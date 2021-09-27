@@ -1,0 +1,51 @@
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+<section class="text-center">
+    <div class="container px-5 my-5">
+        <h1 class="mb-5">Converti le calendrier FFVB en agenda google</h1>
+        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+            <div class="form-floating mb-3">
+                <input class="form-control" id="newField" type="text" placeholder="https://www.ffvbbeach.org/ffvbapp/resu/vbspo_calendrie..." data-sb-validations="required" />
+                <label for="newField">Lien FFVB</label>
+                <div class="invalid-feedback" data-sb-feedback="newField:required">New Field is required.</div>
+            </div>
+            <div class="d-none" id="submitErrorMessage">
+                <div class="text-center text-danger mb-3">Error sending message!</div>
+            </div>
+            <div class="float-end">
+                <button class="btn btn-primary " id="submitButton" type="submit"><i class="bi bi-download"></i>
+                    Télécharger le calendrier Google
+                </button>
+            </div>
+        </form>
+        <br/>
+        <br/>
+        <hr>
+        <h2>Trouvez votre championnat :</h2>
+        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+            <div class="form-floating mb-3">
+                <select class="form-select" id="saison" aria-label="Saison">
+                </select>
+                <label for="saison">Saison</label>
+            </div>
+            <div class="form-floating mb-3">
+                <select class="form-select" id="region" aria-label="Region">
+                </select>
+                <label for="region">Region</label>
+            </div>
+            <div class="form-floating mb-3">
+                <select class="form-select" id="championnat" aria-label="Championnat">
+                </select>
+                <label for="championnat">Championnat</label>
+            </div>
+            <div class="float-end">
+                <button class="btn btn-primary " id="submitButton" type="submit">
+                    acceder au calendrier FFVB
+                </button>
+            </div>
+        </form>
+        <br/>
+    </div>
+</section>
+{% endblock body %}

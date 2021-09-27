@@ -91,20 +91,7 @@ $headerGoogleToFFVB = [
 // bouton "télécharger le calendrier Google" et mémo en fin de page "pour importer le calendrier google  https://support.google.com/calendar/answer/37118?hl=fr&co=GENIE.Platform%3DDesktop#zippy=%2Ccr%C3%A9er-ou-modifier-un-fichier-csv"
 
 echo '
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
-    <title>Mets ça sur mon agenda</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-</head>
-<body>
+
 <!-- Form-->
 <section class="text-center">
     <div class="container px-5 my-5">
@@ -171,11 +158,4 @@ echo '
         <br/>
     </div>
 </section>
-
-<footer class="my-5 pt-5 text-muted text-center text-small">
-    <p class="text-muted small mb-4 mb-lg-0 mb-1">avec <3 par <a href="https://github.com/reynadan">Daniel Reynaud</a> 2021. Aucun droit reservé.</p>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-</body>
-</html>';
+';

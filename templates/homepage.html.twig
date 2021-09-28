@@ -3,19 +3,16 @@
 {% block body %}
 <section class="text-center">
     <div class="container px-5 my-5">
-        <h1 class="mb-5">Converti le calendrier FFVB en agenda google</h1>
-        <form id="contactForm">
+        <h1 class="mb-5">Convertir le calendrier FFVB en agenda google</h1>
+        <form method="post" action="{{ path('selectTeam') }}">
             <div class="form-floating mb-3">
-                <input class="form-control" id="newField" type="text" placeholder="https://www.ffvbbeach.org/ffvbapp/resu/vbspo_calendrie..." />
-                <label for="newField">Lien FFVB</label>
-                <div class="invalid-feedback">New Field is required.</div>
-            </div>
-            <div class="d-none" id="submitErrorMessage">
-                <div class="text-center text-danger mb-3">Error sending message!</div>
+                <input name="ffvbLink" class="form-control" id="ffvbLink" type="text" placeholder="https://www.ffvbbeach.org/ffvbapp/resu/vbspo_calendrie..." />
+                <label for="ffvbLink">Lien FFVB</label>
+                <div class="invalid-feedback">Le lien FFVB est requis.</div>
             </div>
             <div class="float-end">
                 <button class="btn btn-primary " id="submitButton" type="submit"><i class="bi bi-download"></i>
-                    Télécharger le calendrier Google
+                    Trouvez mon équipe
                 </button>
             </div>
         </form>

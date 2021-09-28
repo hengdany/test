@@ -1,0 +1,23 @@
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+<section class="text-center">
+    <div class="container px-5 my-5">
+        <h1 class="mb-5">De quelle équipe faites vous parti ?</h1>
+        <form method="post" action="">
+            <div class="form-floating mb-3">
+                <select class="form-select" id="team" aria-label="team">
+                    {% for team in teams %}
+                        <option value="{{ team }}">{{ team }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="float-end">
+                <button class="btn btn-primary " id="submitButton" type="submit"><i class="bi bi-download"></i>
+                    Télécharger le calendrier Google
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock body %}

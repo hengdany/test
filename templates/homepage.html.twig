@@ -3,7 +3,12 @@
 {% block body %}
 <section class="text-center">
     <div class="container px-5 my-5">
-        <h1 class="mb-5">Convertir le calendrier FFVB en agenda google</h1>
+        <h1 class="mb-5">Importer mon calendrier FFVB sur mon agenda google</h1>
+        <p class="lead mb-4">
+                Copier/coller votre calendrier FFVB<br/>
+                Choisissez votre équipe<br/>
+                <a href="https://support.google.com/calendar/answer/37118?hl=fr&ref_topic=10510645">importer sur votre agenda Google</a>
+        </p>
         <form method="post" action="{{ path('selectTeam') }}">
             <div class="form-floating mb-3">
                 <input name="ffvbLink" class="form-control" id="ffvbLink" type="text" placeholder="https://www.ffvbbeach.org/ffvbapp/resu/vbspo_calendrie..." />
@@ -12,7 +17,7 @@
             </div>
             <div class="float-end">
                 <button class="btn btn-primary " id="submitButton" type="submit"><i class="bi bi-download"></i>
-                    Trouvez mon équipe
+                    Choisir mon équipe
                 </button>
             </div>
         </form>

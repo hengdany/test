@@ -11,7 +11,7 @@ Cet outil permet de convertir un lien calendrier de match FFVB vers un calendrie
 
 ## Importer l'agenda sur google calendar
  - Ouvrez Google Agenda.
- - En haut à droite, cliquez sur Paramètres Paramètres puis Paramètres.
+ - En haut à droite, cliquez sur la roue dentée puis Paramètres
  - À gauche, cliquez sur Importer et exporter.
  - Cliquez sur Sélectionner un fichier sur votre ordinateur et sélectionnez le fichier que vous avez exporté.Son extension doit être ".ics" ou ".csv".
  - Sélectionnez l'agenda dans lequel vous souhaitez ajouter les événements importés. Par défaut, les événements sont importés dans votre agenda principal.

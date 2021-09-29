@@ -1,23 +1,75 @@
-{%  extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block body %}
-<section class="text-center">
-    <div class="container px-5 my-5">
-        <h1 class="mb-5">De quelle équipe faites vous parti ?</h1>
-        <form method="post" action="">
-            <div class="form-floating mb-3">
-                <select class="form-select" id="team" aria-label="team">
-                    {% for team in teams %}
-                        <option value="{{ team }}">{{ team }}</option>
-                    {% endfor %}
-                </select>
+    <section class="text-center">
+        <div class="container px-5 my-5">
+            <h1 class="mb-5 fw-bold">De quelle équipe faites vous parti ?</h1>
+            <p class="lead mb-7">
+                Choisissez votre équipe dans la liste ci dessus.
+            </p>
+
+            <form method="post" action="{{ path('downloadGcal') }}">
+                <div class="form-floating mb-3">
+                    <select name="team" class="form-select" id="team" aria-label="team">
+                        {% for team in teams %}
+                            <option value="{{ team }}">{{ team }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="float-end">
+                    <button class="btn btn-primary " id="submitButton" type="submit"><i class="bi bi-download"></i>
+                        Télécharger le calendrier Google
+                    </button>
+                </div>
+            </form>
+        </div>
+        <br/>
+        <hr>
+
+        <div class="px-4 pt-5 my-5 text-center border-bottom">
+            <h1 class="display-5">Comment importer mon agenda ?</h1>
+            <p class="lead mb-5">Retrouvez la procédure ici : <a
+                        href="https://support.google.com/calendar/answer/37118?hl=fr&ref_topic=10510645">importer sur
+                    votre agenda Google</a> ou suivez les étapes suivantes :</p>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">Ouvrez <a href="http://calendar.google.com/">Google Agenda</a> et cliquer sur la
+                    roue dentée puis sur "Paramètres"</p>
             </div>
-            <div class="float-end">
-                <button class="btn btn-primary " id="submitButton" type="submit"><i class="bi bi-download"></i>
-                    Télécharger le calendrier Google
-                </button>
+            <div class="container px-5 my-5">
+                <img src="../assets/images/step1.png" class="align-middle mr-1">
             </div>
-        </form>
-    </div>
-</section>
+
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">Cliquez sur "Importer et exporter" dans le menu vertical à gauche</p>
+            </div>
+            <div class="container px-5 my-5">
+                <img src="../assets/images/step2.png" class="align-middle mr-1">
+            </div>
+
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">Cliquez sur "Sélectionner un fichier sur votre ordinateur" et sélectionner le
+                    fichier que vous venez de télécharger.</p>
+            </div>
+            <div class="container px-5 my-5">
+                <img src="../assets/images/step3.png" class="align-middle mr-1">
+            </div>
+
+
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">Enfin, cliquez sur "Importer".</p>
+            </div>
+            <div class="container px-5 my-5">
+                <img src="../assets/images/step4.png" class="align-middle mr-1">
+            </div>
+
+
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">Si l'import s'est bien passé, vous devriez voir votre nombre de match importés
+                    !</p>
+            </div>
+            <div class="container px-5">
+                <img src="../assets/images/step5.png" class="align-middle mr-1">
+            </div>
+        </div>
+    </section>
 {% endblock body %}

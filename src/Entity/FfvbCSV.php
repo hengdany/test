@@ -24,15 +24,35 @@ class FfvbCSV {
         "Arb2"
     ];
 
+    const HEADER_CSV_GOOGLE = [
+        "Subject",
+        "Start Date",
+        "Start Time",
+        "End Date",
+        "End Time",
+        "All Day Event",
+        "Description",
+        "Location"
+    ];
+
     /**
      * @var FfvbLink
      */
     private $ffvbLink;
 
     /**
+     * CSV, associative array format
+     *
      * @var array
      */
     private $ffvbCsv;
+
+    /**
+     * CSV, string format
+     *
+     * @var string
+     */
+    private $gcalCsv;
 
     /**
      * @param FfvbLink $ffvbLink
@@ -109,4 +129,46 @@ class FfvbCSV {
         return array_filter($teamsRaw);
     }
 
+    /**
+     * Remove games of other teams from the CSV
+     *
+     * @param string $teamName
+     */
+    public function keepGamesByTeam(string $teamName): void
+    {
+        foreach($this->ffvbCsv as $index => $row) {
+            if($row['EQA_nom'] === $teamName || $row['EQB_nom'] === $teamName) {
+                continue;
+            }
+            unset($this->ffvbCsv[$index]);
+        }
+    }
+
+    public function convertFFVBCsvToGcal()
+    {
+        // place Header
+        $this->gcalCsv = implode(",", self::HEADER_CSV_GOOGLE) . PHP_EOL;
+
+        foreach($this->ffvbCsv as $index => $row) {
+            $conversionTable = [
+                "Subject"       => "Match ". $row['Jo'] ." ". $row['EQA_nom'] ." VS ". $row['EQB_nom'],
+                "Start Date"    => date("d/m/Y", strtotime($row['Date'])),
+                "Start Time"    => $row['Heure'],
+                "End Date"      => date("d/m/Y", strtotime($row['Date'])),
+                "End Time"      => date('H:i', strtotime($row['Heure'].'+2 hours')),
+                "All Day Event" => "FALSE",
+                "Description"   => "Arbitre ".  $row['Arb1'],
+                "Location"      => $row['Salle']
+            ];
+            $this->gcalCsv .= implode(",", $conversionTable) . PHP_EOL;
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getGcalCsv(): string
+    {
+        return $this->gcalCsv;
+    }
 }

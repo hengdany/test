@@ -59,14 +59,13 @@ class DefaultController extends AbstractController
         /** @var FfvbCSV $ffvbCSV */
         $ffvbCSV = $session->get('ffvbCSV');
         $ffvbCSV->keepGamesByTeam($teamSelected);
-        $ffvbCSV->convertFFVBCsvToGcal();
 
-        $response = new Response($ffvbCSV->getGcalCsv());
-        $response->headers->set('Content-Type', 'text/csv');
+        $response = new Response($ffvbCSV->getIcs());
+        $response->headers->set('Content-Type', 'text/calendar');
 
         $disposition = $response->headers->makeDisposition(
             ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-            $teamSelected.'.csv'
+            $teamSelected.'.ics'
         );
 
         $response->headers->set('Content-Disposition', $disposition);

@@ -48,13 +48,6 @@ class FfvbCSV {
     private $ffvbCsv;
 
     /**
-     * CSV, string format
-     *
-     * @var string
-     */
-    private $gcalCsv;
-
-    /**
      * @param FfvbLink $ffvbLink
      */
     public function __construct(FfvbLink $ffvbLink)
@@ -144,10 +137,10 @@ class FfvbCSV {
         }
     }
 
-    public function convertFFVBCsvToGcal()
+    public function getGcalCsv()
     {
         // place Header
-        $this->gcalCsv = implode(",", self::HEADER_CSV_GOOGLE) . PHP_EOL;
+        $gcalCsv = implode(",", self::HEADER_CSV_GOOGLE) . PHP_EOL;
 
         foreach($this->ffvbCsv as $index => $row) {
             $conversionTable = [
@@ -160,15 +153,31 @@ class FfvbCSV {
                 "Description"   => "Arbitre ".  $row['Arb1'],
                 "Location"      => $row['Salle']
             ];
-            $this->gcalCsv .= implode(",", $conversionTable) . PHP_EOL;
+            $gcalCsv .= implode(",", $conversionTable) . PHP_EOL;
         }
+
+        return $gcalCsv;
     }
 
-    /**
-     * @return string
-     */
-    public function getGcalCsv(): string
+    public function getIcs()
     {
-        return $this->gcalCsv;
+        $ics = "BEGIN:VCALENDAR\n";
+        $ics .= "VERSION:2.0\n";
+        $ics .= "PRODID:-//hacksw/handcal//NONSGML v1.0//EN\n";
+
+        foreach($this->ffvbCsv as $index => $row) {
+
+            $ics .= "BEGIN:VEVENT\n";
+            $ics .= "X-WR-TIMEZONE:Europe/Paris\n";
+            $ics .= "DTSTART:".date('Ymd', strtotime($row['Date']))."T".date('His', strtotime($row['Heure']))."\n";
+            $ics .= "DTEND:".date('Ymd', strtotime($row['Date']))."T".date('His', strtotime($row['Heure'].'+2 hours'))."\n";
+            $ics .= "SUMMARY:"."Match ". $row['Jo'] ." ". $row['EQA_nom'] ." VS ". $row['EQB_nom']."\n";
+            $ics .= "LOCATION:".$row['Salle']."\n";
+            $ics .= "DESCRIPTION:"."Arbitre ".  $row['Arb1']."\n";
+            $ics .= "END:VEVENT\n";
+
+        }
+        $ics .= "END:VCALENDAR\n";
+        return $ics;
     }
 }

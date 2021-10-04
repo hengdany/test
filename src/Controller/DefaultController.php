@@ -21,7 +21,7 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("team/select", name="selectTeam", methods={"POST"})
+     * @Route("team/select", name="selectTeam")
      * @param Request $request
      * @return Response
      */
@@ -46,7 +46,7 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("calendar/download", name="downloadGcal", methods={"POST"})
+     * @Route("calendar/download", name="downloadGcal")
      * @param Request $request
      * @return Response
      */

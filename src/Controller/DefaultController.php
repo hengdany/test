@@ -63,9 +63,14 @@ class DefaultController extends AbstractController
         $response = new Response($ffvbCSV->getIcs());
         $response->headers->set('Content-Type', 'text/calendar');
 
+        $teamSelected = preg_replace(
+            '#^.*\.#', '', $teamSelected
+        );
+
         $disposition = $response->headers->makeDisposition(
             ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-            $teamSelected.'.ics'
+            $teamSelected.'.ics',
+            'calendrier_volley.ics'
         );
 
         $response->headers->set('Content-Disposition', $disposition);

@@ -6,22 +6,38 @@ class FfvbCSV {
 
     const LINK_DOWNLOAD_CSV = 'http://www.ffvbbeach.org/ffvbapp/resu/vbspo_calendrier_export.php';
 
+    const ENTITY           = 'Entité';
+    const JOUR             = 'Jo';
+    const MATCH            = 'Match';
+    const DATE             = 'Date';
+    const HEURE            = 'Heure';
+    const EQUIPE_A_NUMERO  = 'EQA_no';
+    const EQUIPE_A_NOM     = 'EQA_nom';
+    const EQUIPE_B_NUMERO  = 'EQB_no';
+    const EQUIPE_B_NOM     = 'EQB_nom';
+    const SET              = 'Set';
+    const SCORE            = 'Score';
+    const TOTAL            = 'Total';
+    const SALLE            = 'Salle';
+    const ARBITRE_1        = 'Arb1';
+    const ARBITRE_2        = 'Arb2';
+
     const HEADER_CSV_FFVB = [
-        "Entité",
-        "Jo",
-        "Match",
-        "Date",
-        "Heure",
-        "EQA_no",
-        "EQA_nom",
-        "EQB_no",
-        "EQB_nom",
-        "Set",
-        "Score",
-        "Total",
-        "Salle",
-        "Arb1",
-        "Arb2"
+       self::ENTITY,
+       self::JOUR,
+       self::MATCH,
+       self::DATE,
+       self::HEURE,
+       self::EQUIPE_A_NUMERO,
+       self::EQUIPE_A_NOM,
+       self::EQUIPE_B_NUMERO,
+       self::EQUIPE_B_NOM,
+       self::SET,
+       self::SCORE,
+       self::TOTAL,
+       self::SALLE,
+       self::ARBITRE_1,
+       self::ARBITRE_2
     ];
 
     const HEADER_CSV_GOOGLE = [
@@ -145,13 +161,28 @@ class FfvbCSV {
 
         foreach($this->ffvbCsv as $index => $row) {
 
+            $date = date("Ymd", strtotime($row[self::DATE]));
+            $startTime = date('His', strtotime($row[self::HEURE]));
+
+            if($row[self::DATE] === '0000-00-00') {
+                // Get the first year of the season
+                $saison = explode('/', $this->ffvbLink->cal_saison);
+                $date = date("Ymd", strtotime($saison[0].'-09-01'));
+            }
+
+            if($row[self::HEURE] === '00:00') {
+                $startTime = date('His', strtotime('20:00'));
+            }
+
+            $endTime = date('His', strtotime($startTime.'+2 hours'));
+
             $ics .= "BEGIN:VEVENT\n";
             $ics .= "X-WR-TIMEZONE:Europe/Paris\n";
-            $ics .= "DTSTART:".date('Ymd', strtotime($row['Date']))."T".date('His', strtotime($row['Heure']))."\n";
-            $ics .= "DTEND:".date('Ymd', strtotime($row['Date']))."T".date('His', strtotime($row['Heure'].'+2 hours'))."\n";
-            $ics .= "SUMMARY:"."Match ". $row['Jo'] ." ". $row['EQA_nom'] ." VS ". $row['EQB_nom']."\n";
-            $ics .= "LOCATION:".$row['Salle']."\n";
-            $ics .= "DESCRIPTION:"."Arbitre ".  $row['Arb1']."\n";
+            $ics .= "DTSTART:".$date."T".$startTime."\n";
+            $ics .= "DTEND:".$date."T".$endTime."\n";
+            $ics .= "SUMMARY:"."Match ". $row[self::JOUR] ." ". $row[self::EQUIPE_A_NOM] ." VS ". $row[self::EQUIPE_B_NOM]."\n";
+            $ics .= "LOCATION:".$row[self::SALLE]."\n";
+            $ics .= "DESCRIPTION:"."Arbitre ".  $row[self::ARBITRE_1]."\n";
             $ics .= "END:VEVENT\n";
 
         }

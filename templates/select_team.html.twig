@@ -3,10 +3,11 @@
 {% block body %}
     <section class="text-center">
         <div class="container px-5 my-5">
-            <h1 class="mb-5 fw-bold">De quelle équipe faites vous parti ?</h1>
-            <p class="lead mb-7">
-                Choisissez votre équipe dans la liste ci dessous.
-            </p>
+            <h1 class="mb-5 fw-bold">De quelle équipe faites-vous parti ?</h1>
+            <div class="bd-callout bd-callout-default">
+                <h5>Choisissez votre équipe dans la liste ci dessous.</h5>
+                Si votre calendrier contient des matchs sans dates, ils seront affichés par défaut au 01/09 à 20:00.
+            </div>
 
             <form method="post" action="{{ path('downloadGcal') }}">
                 <div class="form-floating mb-3">

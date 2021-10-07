@@ -2,12 +2,15 @@
 
 {% block body %}
     <section class="text-center">
-        <div class="container my-5 py-5">
-            <h1 class="mb-5">Exporter mon calendrier FFVB sur n'importe quel agenda (Outlook, Google, ...)</h1>
-            <p class="lead mb-4">
-                Copier/coller votre calendrier FFVB<br/>
-                commençant par : https://www.ffvbbeach.org/ffvbapp/resu/...<br/>
-            </p>
+        <div class="container py-5">
+            <div class="text-center py-1">
+                <img class="d-block mx-auto py-5" src="../assets/images/ffvbtogcal.png" alt="">
+                <h2>Exporter mon calendrier FFVB</h2>
+                <p class="lead">
+                    Copier/coller le lien de votre calendrier FFVB commençant par : https://www.ffvbbeach.org/ffvbapp/resu/...<br/>
+                    et exporter le  sur n'importe quel agenda (Outlook, Google, ...)<br/>
+                </p>
+            </div>
             <form method="post" action="{{ path('selectTeam') }}">
                 <div class="form-floating mb-3">
                     <input name="ffvbLink" class="form-control" id="ffvbLink" type="text" placeholder=""/>

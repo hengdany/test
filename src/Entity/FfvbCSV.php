@@ -137,28 +137,6 @@ class FfvbCSV {
         }
     }
 
-    public function getGcalCsv()
-    {
-        // place Header
-        $gcalCsv = implode(",", self::HEADER_CSV_GOOGLE) . PHP_EOL;
-
-        foreach($this->ffvbCsv as $index => $row) {
-            $conversionTable = [
-                "Subject"       => "Match ". $row['Jo'] ." ". $row['EQA_nom'] ." VS ". $row['EQB_nom'],
-                "Start Date"    => date("d/m/Y", strtotime($row['Date'])),
-                "Start Time"    => $row['Heure'],
-                "End Date"      => date("d/m/Y", strtotime($row['Date'])),
-                "End Time"      => date('H:i', strtotime($row['Heure'].'+2 hours')),
-                "All Day Event" => "FALSE",
-                "Description"   => "Arbitre ".  $row['Arb1'],
-                "Location"      => $row['Salle']
-            ];
-            $gcalCsv .= implode(",", $conversionTable) . PHP_EOL;
-        }
-
-        return $gcalCsv;
-    }
-
     public function getIcs()
     {
         $ics = "BEGIN:VCALENDAR\n";

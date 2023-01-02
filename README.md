@@ -5,9 +5,7 @@
 
 Cet outil permet de convertir un lien calendrier de match FFVB vers un calendrier ICS exportable sur n'importe quel agenda (ex : google, outlook)
 
-<p align="center">
-  <img src="https://ffvbtogcal.herokuapp.com/assets/images/ffvbtogcal.png" alt="Image de présentation"/>
-</p>
+![Image de présentation](public/assets/images/ffvbtogcal.png?raw=true)
 
 ## Exporter votre agenda
 

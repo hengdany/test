@@ -7,22 +7,55 @@
                 <img class="img-fluid mx-auto py-5" src="../assets/images/ffvbtogcal.png" alt="">
                 <h2>Exporter mon calendrier FFVB</h2>
                 <p class="lead">
-                    Copier/coller le lien de votre calendrier FFVB commençant par : https://www.ffvbbeach.org/ffvbapp/resu/...<br/>
+                    Coller le lien de votre calendrier FFVB commençant par : https://www.ffvbbeach.org/ffvbapp/resu/...<br/>
                     et exporter le  sur n'importe quel agenda (Outlook, Google, ...)<br/>
                 </p>
             </div>
             <form method="post" action="{{ path('selectTeam') }}">
                 <div class="form-floating mb-3">
-                    <input name="ffvbLink" class="form-control" id="ffvbLink" type="text" placeholder=""/>
+                    <input name="ffvbLink" class="form-control" id="ffvbLink" type="text" placeholder="https://www.ffvbbeach.org/ffvbapp/resu/..."/>
                     <label for="ffvbLink">Lien FFVB</label>
                     <div class="invalid-feedback">Le lien FFVB est requis.</div>
                 </div>
                 <div class="float-end">
-                    <button class="btn btn-primary " type="submit"><i class="bi bi-download"></i>
+                    <button class="btn btn-primary" type="submit"><i class="bi bi-download"></i>
                         Choisir mon équipe
                     </button>
                 </div>
             </form>
+        </div>
+        <!-- links to championships -->
+        <div class="pt-5 my-5 text-muted border-top">
+            <div class="row">
+                <h3>Trouver ma compétition</h2>
+                 <p class="lead">
+                    Trouver et copier le lien de votre calendrier FFVB commençant par : https://www.ffvbbeach.org/ffvbapp/resu/...
+                </p>
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="http://www.ffvb.org/front/119-159-1-Championnats-Nationaux">Championnats Nationaux</a></h5>
+                            <p class="card-text">Calendriers des N3, N2, Elite avenir et Elite.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="http://www.ffvb.org/front/120-37-1-Championnats-Regionaux">Championnats Régionaux</a></h5>
+                            <p class="card-text">Calendriers de Régional et Pré-national par région.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="http://www.ffvb.org/front/122-37-1-Championnats-Departementaux">Championnats Régionaux</a></h5>
+                            <p class="card-text">Calendriers des départementaux par région et départements.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 {% endblock body %}

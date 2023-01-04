@@ -1,7 +1,10 @@
 ***************
-Site en cours de migration
+Le site a changé de domaine !
 ====================================
-Heroku est passé sur un model payant, je cherche une alternative, en attendant contactez moi par mail je vous transmettrai les calendriers
+Retrouvez votre outil au https://ffvbtogcal.onrender.com/
+
+<sup>L'ancien site https://ffvbtogcal.herokuapp.com/ n'est plus accessible<sup>
+
 ***************
 
 # FFVBtoGCAL
@@ -17,7 +20,7 @@ Cet outil permet de convertir un lien calendrier de match FFVB vers un calendrie
 
  <img src="https://i.imgur.com/TWtjyE9.gif" alt="Sublime's custom image"/>
 
- - Aller sur https://ffvbtogcal.herokuapp.com/
+ - Aller sur https://ffvbtogcal.onrender.com/
  - coller le lien de votre calendrier FFVB en entier, ex : https://www.ffvbbeach.org/ffvbapp/resu/vbspo_calendrier.php?saison=2021%2F2022&codent=LIRA&poule=RMD&division=&tour=&calend=COMPLET&x=2&y=10
  - cliquer sur "Choisir mon équipe"
  - Selectionner une des équipes proposée 

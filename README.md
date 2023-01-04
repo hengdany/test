@@ -9,7 +9,7 @@ Retrouvez votre outil au https://ffvbtogcal.onrender.com/
 
 # FFVBtoGCAL
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Symfony](https://img.shields.io/badge/Symfony-5-yellowgreen?logo=symfony)
+![Symfony](https://img.shields.io/badge/Symfony-6.2-green?logo=symfony)
 
 
 Cet outil permet de convertir un lien calendrier de match FFVB vers un calendrier ICS exportable sur n'importe quel agenda (ex : google, outlook)

@@ -11,7 +11,7 @@ class FfvbLink {
     /**
      * @param string $ffvbLink
      */
-    public function __construct(string $ffvbLink)
+    static function createFromLink(string $ffvbLink) 
     {
         $path = parse_url($ffvbLink, PHP_URL_PATH);
 

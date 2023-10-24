@@ -33,7 +33,7 @@ class DefaultController extends AbstractController
             return $this->render('homepage.html.twig');
         }
 
-        $ffvbLink = new FfvbLink($ffvbLinkSubmitted);
+        $ffvbLink = FfvbLink::createFromLink($ffvbLinkSubmitted);
         $ffvbCSV = new FfvbCSV($ffvbLink);
         $ffvbCSV->setFFVBCalendar();
 
@@ -42,6 +42,9 @@ class DefaultController extends AbstractController
 
         return $this->render('select_team.html.twig', [
             'teams' => $ffvbCSV->getAllTeams(),
+            'saison' =>$ffvbLink->cal_saison,
+            'codent' =>$ffvbLink->cal_codent,
+            'poule' => $ffvbLink->cal_codpoule
         ]);
     }
 
@@ -76,5 +79,27 @@ class DefaultController extends AbstractController
         $response->headers->set('Content-Disposition', $disposition);
 
         return $response;
+    }
+
+    /**
+     * Download with team 
+     * 
+     * @Route("quick/download", name="quickDownload")
+     * @param Request $request
+     * @return Response
+     */
+    public function quickDownload(Request $request): Reponse
+    {
+        $ffvbLink = new FfvbLink();
+        $ffvbLink->cal_saison   = $request->request->get('saison');
+        $ffvbLink->cal_codent   = $request->request->get('codent');
+        $ffvbLink->cal_codpoule = $request->request->get('poule');
+
+        $team = $request->request->get('team');
+
+        $ffvbCSV = new FfvbCSV($ffvbLink);
+        $ffvbCSV->setFFVBCalendar();
+        $request->getSession()->set('ffvbCSV', $ffvbCSV);
+        $this->downloadGcal($request);
     }
 }

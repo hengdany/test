@@ -10,20 +10,22 @@ class FfvbLink {
 
     /**
      * @param string $ffvbLink
+     * @return FfvbLink
      */
     static function createFromLink(string $ffvbLink) 
     {
         $path = parse_url($ffvbLink, PHP_URL_PATH);
 
+        $ffvbLink = new FfvbLink();
+
         // Regionnaux
         if($path === '/ffvbapp/resu/vbspo_calendrier.php') {
             $query = parse_url($ffvbLink, PHP_URL_QUERY);
             parse_str($query, $params);
-            $this->ffvbLink = $ffvbLink;
 
-            $this->cal_saison =  $params['saison'];
-            $this->cal_codent =  $params['codent'];
-            $this->cal_codpoule =  $params['poule'];
+            $ffvbLink->cal_saison   = $params['saison'];
+            $ffvbLink->cal_codent   = $params['codent'];
+            $ffvbLink->cal_codpoule = $params['poule'];
         }
 
         // Nationnaux
@@ -34,13 +36,15 @@ class FfvbLink {
          */
         if(str_starts_with($path, '/ffvbapp/resu/seniors/')) {
             if (preg_match('/seniors\/(.*?)\/index/', $path, $match) === 1) {
-                $this->cal_saison = str_replace('-', '/', $match[1]);
+                $ffvbLink->cal_saison = str_replace('-', '/', $match[1]);
             }
             if (preg_match('/index_(.*?)\.htm/', $path, $match) === 1) {
-                $this->cal_codpoule = strtoupper($match[1]);
+                $ffvbLink->cal_codpoule = strtoupper($match[1]);
             }
-            $this->cal_codent = 'ABCCS';
+            $ffvbLink->cal_codent = 'ABCCS';
         }
+
+        return $ffvbLink;
     }
 
 }

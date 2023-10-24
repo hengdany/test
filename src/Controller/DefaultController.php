@@ -88,7 +88,7 @@ class DefaultController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function quickDownload(Request $request): Reponse
+    public function quickDownload(Request $request): Response
     {
         $ffvbLink = new FfvbLink();
         $ffvbLink->cal_saison   = urldecode($request->query->get('saison'));

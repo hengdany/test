@@ -95,11 +95,28 @@ class DefaultController extends AbstractController
         $ffvbLink->cal_codent   = $request->request->get('codent');
         $ffvbLink->cal_codpoule = urldecode($request->request->get('poule'));
 
-        $team = $request->request->get('team');
+        $teamSelected = $request->request->get('team');
 
         $ffvbCSV = new FfvbCSV($ffvbLink);
         $ffvbCSV->setFFVBCalendar();
-        $request->getSession()->set('ffvbCSV', $ffvbCSV);
-        $this->downloadGcal($request);
+
+        $ffvbCSV->keepGamesByTeam($teamSelected);
+
+        $response = new Response($ffvbCSV->getIcs());
+        $response->headers->set('Content-Type', 'text/calendar');
+
+        $teamSelected = preg_replace(
+            '#^.*\.#', '', $teamSelected
+        );
+
+        $disposition = $response->headers->makeDisposition(
+            ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+            $teamSelected.'.ics',
+            'calendrier_volley.ics'
+        );
+
+        $response->headers->set('Content-Disposition', $disposition);
+
+        return $response;
     }
 }

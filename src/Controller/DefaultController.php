@@ -41,10 +41,10 @@ class DefaultController extends AbstractController
         $session->set('ffvbCSV', $ffvbCSV);
 
         return $this->render('select_team.html.twig', [
-            'teams' => $ffvbCSV->getAllTeams(),
-            'saison' =>$ffvbLink->cal_saison,
-            'codent' =>$ffvbLink->cal_codent,
-            'poule' => $ffvbLink->cal_codpoule
+            'teams'  => $ffvbCSV->getAllTeams(),
+            'saison' => urlencode($ffvbLink->cal_saison),
+            'codent' => $ffvbLink->cal_codent,
+            'poule'  => urlencode($ffvbLink->cal_codpoule)
         ]);
     }
 
@@ -91,9 +91,9 @@ class DefaultController extends AbstractController
     public function quickDownload(Request $request): Reponse
     {
         $ffvbLink = new FfvbLink();
-        $ffvbLink->cal_saison   = $request->request->get('saison');
+        $ffvbLink->cal_saison   = urldecode($request->request->get('saison'));
         $ffvbLink->cal_codent   = $request->request->get('codent');
-        $ffvbLink->cal_codpoule = $request->request->get('poule');
+        $ffvbLink->cal_codpoule = urldecode($request->request->get('poule'));
 
         $team = $request->request->get('team');
 

@@ -91,11 +91,11 @@ class DefaultController extends AbstractController
     public function quickDownload(Request $request): Reponse
     {
         $ffvbLink = new FfvbLink();
-        $ffvbLink->cal_saison   = urldecode($request->request->get('saison'));
-        $ffvbLink->cal_codent   = $request->request->get('codent');
-        $ffvbLink->cal_codpoule = urldecode($request->request->get('poule'));
+        $ffvbLink->cal_saison   = urldecode($request->query->get('saison'));
+        $ffvbLink->cal_codent   = $request->query->get('codent');
+        $ffvbLink->cal_codpoule = urldecode($request->query->get('poule'));
 
-        $teamSelected = $request->request->get('team');
+        $teamSelected = $request->query->get('team');
 
         $ffvbCSV = new FfvbCSV($ffvbLink);
         $ffvbCSV->setFFVBCalendar();

@@ -9,18 +9,18 @@ class FfvbLink {
     public $cal_codpoule = '';
 
     /**
-     * @param string $ffvbLink
+     * @param string $ffvbLinkSubmitted
      * @return FfvbLink
      */
-    static function createFromLink(string $ffvbLink) 
+    static function createFromLink(string $ffvbLinkSubmitted) 
     {
-        $path = parse_url($ffvbLink, PHP_URL_PATH);
+        $path = parse_url($ffvbLinkSubmitted, PHP_URL_PATH);
 
         $ffvbLink = new FfvbLink();
 
         // Regionnaux
         if($path === '/ffvbapp/resu/vbspo_calendrier.php') {
-            $query = parse_url($ffvbLink, PHP_URL_QUERY);
+            $query = parse_url($ffvbLinkSubmitted, PHP_URL_QUERY);
             parse_str($query, $params);
 
             $ffvbLink->cal_saison   = $params['saison'];

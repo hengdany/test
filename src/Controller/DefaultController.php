@@ -42,7 +42,7 @@ class DefaultController extends AbstractController
 
         return $this->render('select_team.html.twig', [
             'teams'  => $ffvbCSV->getAllTeams(),
-            'saison' => urlencode($ffvbLink->cal_saison),
+            'saison' => $ffvbLink->cal_saison,
             'codent' => $ffvbLink->cal_codent,
             'poule'  => urlencode($ffvbLink->cal_codpoule)
         ]);

@@ -72,7 +72,6 @@
                 <img src="../assets/images/step3.png" class="img-fluid align-middle mr-1">
             </div>
 
-
             <div class="col-lg-6 mx-auto">
                 <p class="lead mb-4">Enfin, cliquez sur "Importer".</p>
             </div>
@@ -94,9 +93,13 @@
     <script>
         function copyToClipBoard() {
             var copyText = document.getElementById("quicklink");
+
+            var sel = document.getElementById("team");
+            var selectedTeam = sel.options[sel.selectedIndex].text;
+
             copyText.select();
             copyText.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(copyText.value);
+            navigator.clipboard.writeText(copyText.value+'&team='+selectedTeam);
         }
     </script>
 {% endblock body %}
